@@ -1,19 +1,4 @@
-export interface ICategory {
-    id: number;
-    name: string;
-    slug: string;
-    createdAt: string;
-    updatedAt: string;
-    subcategories?: ISubcategory[];
-}
-
-export interface ISubcategory {
-    id: number;
-    name: string;
-    slug: string;
-    createdAt: string;
-    updatedAt: string;
-}
+import { ICategory } from "../interfaces";
 
 export const categories: ICategory[] = [
     {

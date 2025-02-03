@@ -1,38 +1,53 @@
 import { Box, Button, Card, CardBody, CardFooter, CardHeader, Image, Stack, Text } from "@chakra-ui/react";
-const ProductCard = () => {
+import { IProduct } from "../interfaces";
+import { calculateDiscount } from "../utils/calculateDiscount";
+import { Link } from "react-router-dom";
+interface IProps {
+    product: IProduct
+}
+const ProductCard = ({ product: { id: productId, title, price, images, discountPercentage } }: IProps) => {
+    const { finalPrice, amountSaved } = calculateDiscount(price, discountPercentage)
+
     return (
         <Card
+            as={Link}
+            to={`/product/${productId}`}
             display="flex"
             flexDirection={{ lg: "column", sm: "row" }}
             width={{ lg: "100%", sm: "auto" }}
+            height={'100%'}
         >
             <CardHeader
                 backgroundColor={"var(--bg-card)"}
                 flex={{ base: "0.3=", sm: "1" }}
                 padding={{ lg: "8px", sm: "inherit" }}
+                maxH="200px"
             >
                 <Image
-                    src='/public/products/559aa04b-bc99-467b-9b69-76dfa44e4f53-removebg-preview.png'
+                    src={images[0]}
                     alt='detiles photo'
-                    objectFit={"cover"}
-                    width="100%"
-                    height="100%"
+                    objectFit={"contain"}
+                    width="200px"
+                    height="200px"
                 />
             </CardHeader>
 
             <Stack flex={{ lg: "0.7", sm: "1" }} width="100%">
                 <CardBody py={"12px"} pb={"0px"}>
                     <Stack pb={"0px"} spacing='1'>
-                        <Text fontSize={14}>Original Apple Iphone 12 512GB</Text>
+                        <Text fontSize={14}>{title}</Text>
                         <Box display={"flex"} alignItems={"center"}>
-                            <Text fontWeight="bold">350$</Text>
-                            <Text fontWeight="light" marginStart={3} textDecoration={"line-through"}>450$</Text>
+                            <Text fontWeight="bold">{finalPrice}$</Text>
+                            <Text fontWeight="light" marginStart={3} textDecoration={"line-through"}>{price}$</Text>
                         </Box>
-                        <Text fontSize={14} color={"var(--colors-save)"} fontWeight="light" mt={"6px"}>Save - 100$</Text>
+                        <Text fontSize={14} color={"var(--colors-save)"} fontWeight="light" mt={"6px"}>Save - {amountSaved}$</Text>
                     </Stack>
                 </CardBody>
 
-                <CardFooter padding={"12px"}>
+                <CardFooter padding={"12px"}
+                    onClick={(e) => e.stopPropagation()}
+
+                >
                     <Button
                         variant={"solid"}
                         size={'sm'}
@@ -40,11 +55,14 @@ const ProductCard = () => {
                         color={'white'}
                         width={"full"}
                         _hover={{ opacity: "0.8" }}
+                        onClick={(e) => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                        }}
                     >Add to cart</Button>
                 </CardFooter>
             </Stack>
         </Card>
-
     );
 };
 

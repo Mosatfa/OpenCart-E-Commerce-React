@@ -8,8 +8,10 @@ import {
     Button,
     Checkbox,
 } from "@chakra-ui/react";
-import Range from "./Range";
+import Range from "./ui/Range";
 import { useState } from "react";
+import useCustomQuery from "../hooks/useCustomQuery";
+import { ICategory } from "../interfaces";
 
 
 interface IPrpos {
@@ -19,11 +21,16 @@ const Sidebar = ({ display }: IPrpos) => {
     const textColor = useColorModeValue("gray.800", "white");
     const [currentRange, setCurrentRange] = useState([6000, 10000]); // State to hold current range values
 
+    const { isLoading, data } = useCustomQuery<ICategory[]>({
+        queryKey: ["categories"],
+        url: `/products/categories`,
+    })
+
     // Callback function to update range values
-    const handleRangeChange = (newRange:number[]) => {
-      setCurrentRange(newRange);
+    const handleRangeChange = (newRange: number[]) => {
+        setCurrentRange(newRange);
     };
-    
+
 
     return (
         <Box
@@ -40,27 +47,16 @@ const Sidebar = ({ display }: IPrpos) => {
                     <Text fontSize="sm" fontWeight="bold">
                         Category
                     </Text>
-                    <Stack spacing={0} flex={1}>
-                        <Link href="#" _hover={{ textDecoration: "none" }}>
-                            <Checkbox size={'sm'}>
-                                <Text fontSize={'xs'} fontWeight={500}>Kindle E-readers</Text>
-                            </Checkbox>
-                        </Link>
-                        <Link href="#" _hover={{ textDecoration: "none" }}>
-                            <Checkbox size={'sm'}>
-                                <Text fontSize={'xs'} fontWeight={500}>Electronics</Text>
-                            </Checkbox>
-                        </Link>
-                        <Link href="#" _hover={{ textDecoration: "none" }}>
-                            <Checkbox size={'sm'}>
-                                <Text fontSize={'xs'} fontWeight={500}>Canned, Jarred & Packaged Foods</Text>
-                            </Checkbox>
-                        </Link>
-                        <Link href="#" _hover={{ textDecoration: "none" }}>
-                            <Checkbox size={'sm'}>
-                                <Text fontSize={'xs'} fontWeight={500}>Baking Supplies</Text>
-                            </Checkbox>
-                        </Link>
+                    <Stack spacing={1} flex={1} mt={1}>
+                        {
+                            data?.length ?
+                                data.map(({ name }, index) => (
+                                    <Checkbox key={index} size={'sm'}>
+                                        <Text fontSize={'xs'} fontWeight={500}>{name}</Text>
+                                    </Checkbox>
+                                ))
+                                : null
+                        }
                     </Stack>
                 </Flex>
                 <Flex direction="column" h="100%">

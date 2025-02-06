@@ -1,18 +1,20 @@
-import { Container, Stack} from "@chakra-ui/react";
+import { Container, Stack } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CategoryNavbar from "../components/CategoryNavbar";
+import ScrollToTop from "../router/ScrollToTop";
 const RootLayout = () => {
   return (
-    <Stack spacing={0} className="root-layout">
+    <>
       <Navbar />
       <CategoryNavbar display={{ base: 'none', md: 'block' }} />
       <Container maxW={'full'} p={0}>
+        <ScrollToTop />
         <Outlet />
       </Container>
       <Footer />
-    </Stack>
+    </>
   );
 };
 

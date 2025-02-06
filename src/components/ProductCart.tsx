@@ -11,7 +11,7 @@ const ProductCard = ({ product: { id: productId, title, price, images, discountP
     return (
         <Card
             as={Link}
-            to={`/product/${productId}`}
+            to={`/products/${productId}`}
             display="flex"
             flexDirection={{ lg: "column", sm: "row" }}
             width={{ lg: "100%", sm: "auto" }}

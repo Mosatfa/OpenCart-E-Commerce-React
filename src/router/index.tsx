@@ -1,17 +1,16 @@
-import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
+import { Route, createBrowserRouter, createRoutesFromElements, useLocation } from "react-router-dom";
 import ProtectedRoute from "../components/auth/ProtectedRoute";
 import PageNotFound from "../pages/PageNotFound";
-import RootLayout from "../pages/Layout";
+import RootLayout from "../layouts/Layout";
+import AuthLayout from "../layouts/AuthLayout";
 import ErrorHandler from "../components/errors/ErrorHandler";
 import ProductsPage from "../pages/Products";
 import Product from "../pages/Product";
 import LoginPage from "../pages/Login";
+import RegisterPage from "../pages/Register";
+import CookieService from "../service/CookieService";
 
-
-
-const storageKey = "loggedInUser";
-const userDataString = localStorage.getItem(storageKey);
-const userData = userDataString ? JSON.parse(userDataString) : null;
+const acc_token = CookieService.getCookie('jwt')
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,46 +20,40 @@ const router = createBrowserRouter(
         <Route
           index
           element={
-            <ProtectedRoute isAllowed={userData?.jwt} redirectPath="/login" data={userData}>
-              <ProductsPage />
-            </ProtectedRoute>
+            <ProductsPage />
           }
         />
         <Route
-          path="product/:id"
+          path="products/:id"
           element={
-            <ProtectedRoute isAllowed={userData?.jwt} redirectPath="/" data={userData}>
-              <Product />
-            </ProtectedRoute>
+            <Product />
           }
         />
+      </Route>
+
+      <Route element={<AuthLayout />} errorElement={<ErrorHandler />}>
         <Route
-          // path="login"
-          // element={
-          //   <ProtectedRoute isAllowed={!userData?.jwt} redirectPath="/" data={userData}>
-          //     <Product />
-          //   </ProtectedRoute>
-          // }
-        />
-        {/* <Route
-          path="products"
+          path="/auth/login"
           element={
-          }
-        /> */}
-        <Route
-          path="login"
-          element={
-            <ProtectedRoute isAllowed={userData?.jwt} redirectPath="/" data={userData}>
+            <ProtectedRoute isAllowed={!acc_token} redirectPath="/" data={acc_token}>
               <LoginPage />
             </ProtectedRoute>
           }
         />
-    
+        <Route
+          path="/auth/register"
+          element={
+            <ProtectedRoute isAllowed={!acc_token} redirectPath="/" data={acc_token}>
+              <RegisterPage />
+            </ProtectedRoute>
+          }
+        />
       </Route>
 
       {/* Page Not Found */}
       <Route path="*" element={<PageNotFound />} />
     </>
+
   )
 );
 

@@ -15,6 +15,7 @@ import {
     InputLeftElement,
     Divider,
     Center,
+    Link,
 } from '@chakra-ui/react'
 import {
     HamburgerIcon,
@@ -28,11 +29,18 @@ import { IoPersonOutline } from 'react-icons/io5'
 import { HiOutlineShoppingCart } from 'react-icons/hi2'
 import { useRef } from 'react'
 import DrawerComponent from './ui/Drawer'
+import { Link as LinkDom } from 'react-router-dom'
+import CookieService from '../service/CookieService'
 const Navbar = () => {
+    const acc_token = CookieService.getCookie('jwt')
     const { isOpen, onToggle } = useDisclosure()
-
     const { isOpen: isOpenDrawer, onOpen, onClose } = useDisclosure();
     const btnRef = useRef<HTMLButtonElement>(null);
+
+    const logoutHandler = () => {
+        CookieService.removeCookie('jwt')
+        window.location.reload()
+    }
 
     return (
         <Box>
@@ -59,15 +67,16 @@ const Navbar = () => {
                     />
                 </Flex>
                 <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }} alignItems={"center"}>
-                    <Image
-                        src={logo}
-                        alt="Logo"
-                        objectFit="contain"
-                        width={{ base: "120px", md: "150px" }}
-                        height="auto"
-                        cursor="pointer"
-                    />
-
+                    <Link as={LinkDom} to={'/'}>
+                        <Image
+                            src={logo}
+                            alt="Logo"
+                            objectFit="contain"
+                            width={{ base: "120px", md: "150px" }}
+                            height="auto"
+                            cursor="pointer"
+                        />
+                    </Link>
                     <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
                         <DesktopNav />
                     </Flex>
@@ -79,17 +88,26 @@ const Navbar = () => {
                     alignItems={'center'}
                     direction={'row'}
                     spacing={2}>
-                    <Button display={{ base: 'none', md: 'inline-flex' }} as={'a'} fontSize={'sm'} fontWeight={400} variant={'link'} href={'#'}>
-                        <IoPersonOutline color='var(--main-color)' />
-                        <Text ms={'4px'}>Sign In/Sign Up</Text>
-                    </Button>
-                    <Center height='20px'>
+                    {!acc_token &&
+                        <Button display={{ base: 'none', md: 'inline-flex' }} as={LinkDom} to={'/auth/login'} fontSize={'sm'} fontWeight={400} variant={'link'}>
+                            <IoPersonOutline color='var(--main-color)' />
+                            <Text ms={'4px'}>Sign In/Sign Up</Text>
+                        </Button>
+                    }
+                    {!acc_token && <Center height='20px'>
                         <Divider orientation='vertical' />
                     </Center>
+                    }
                     <Button display={'flex'} onClick={onOpen} variant={"unstyled"} fontSize={'sm'} fontWeight={400} bg={'none'} p={0}>
                         <HiOutlineShoppingCart color='var(--main-color)' />
                         <Text ms={'4px'}>Cart</Text>
                     </Button>
+                    {acc_token && <Button onClick={logoutHandler} variant='outline' color={'gray.700'} fontSize={'sm'} fontWeight={400} size={'sm'}>
+                        Log Out
+                    </Button>
+                    }
+
+
                     <DrawerComponent isOpen={isOpenDrawer} onClose={onClose} finalFocusRef={btnRef} />
                 </Stack>
             </Flex>

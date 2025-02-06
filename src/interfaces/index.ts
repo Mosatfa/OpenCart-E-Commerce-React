@@ -1,7 +1,7 @@
 export interface ICategory {
     name: string;
     slug: string;
-    url:string
+    url: string
 }
 
 export interface ISubcategory {
@@ -15,13 +15,25 @@ export interface ISubcategory {
 export interface IProduct {
     id: number;
     title: string;
-    description:string,
-    brand:string,
+    slug: string
+    description: string,
+    brand: string,
     price: number;
     discountPercentage: number;
     images: string[];
-    rating:number,
+    rating: number,
     reviews: [],
     stock: number
 }
 
+
+export interface IUserLogin {
+    email: string;
+    password: string;
+}
+
+export interface IUserResponse {
+    results: {
+        access_token: string
+    }
+}

@@ -185,27 +185,5 @@ export const categories: ICategory[] = [
                 updatedAt: "2025-02-05T12:00:00Z",
             },
         ],
-    },    {
-        id: 5,
-        name: "Sports & Outdoors",
-        slug: "sports-outdoors",
-        createdAt: "2024-08-05T06:00:00Z",
-        updatedAt: "2025-01-30T06:00:00Z",
-        // subcategories: [
-        //     {
-        //         id: 501,
-        //         name: "Fitness Equipment",
-        //         slug: "fitness-equipment",
-        //         createdAt: "2024-08-08T09:00:00Z",
-        //         updatedAt: "2025-02-01T09:00:00Z",
-        //     },
-        //     {
-        //         id: 502,
-        //         name: "Outdoor Gear",
-        //         slug: "outdoor-gear",
-        //         createdAt: "2024-08-12T12:00:00Z",
-        //         updatedAt: "2025-02-05T12:00:00Z",
-        //     },
-        // ],
-    },
+    }
 ];

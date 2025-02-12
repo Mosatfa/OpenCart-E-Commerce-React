@@ -1,6 +1,6 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react"
 import { IoIosArrowDown } from "react-icons/io"
-import { ISubcategory } from "../../data/categories";
+import { ISubcategory } from "../../interfaces/index";
 
 interface Props {
     children: React.ReactNode

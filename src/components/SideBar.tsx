@@ -21,7 +21,7 @@ const Sidebar = ({ display }: IPrpos) => {
     const textColor = useColorModeValue("gray.800", "white");
     const [currentRange, setCurrentRange] = useState([6000, 10000]); // State to hold current range values
 
-    const { isLoading, data } = useCustomQuery<ICategory[]>({
+    const { data } = useCustomQuery<ICategory[]>({
         queryKey: ["categories"],
         url: `/products/categories`,
     })

@@ -20,7 +20,6 @@ import {
     Menu,
     MenuButton,
     Avatar,
-    VStack,
     MenuList,
     MenuItem,
     MenuDivider,
@@ -29,7 +28,6 @@ import {
     HamburgerIcon,
     CloseIcon,
     ChevronDownIcon,
-    ChevronRightIcon,
     SearchIcon,
 } from '@chakra-ui/icons'
 import logo from '../../public/pngwing.com.png'
@@ -159,9 +157,6 @@ const Navbar = () => {
 }
 
 const DesktopNav = () => {
-    const linkColor = useColorModeValue('gray.600', 'gray.200')
-    const linkHoverColor = useColorModeValue('gray.800', 'white')
-    const popoverContentBgColor = useColorModeValue('white', 'gray.800')
 
     return (
         <Stack>
@@ -220,40 +215,40 @@ const DesktopNav = () => {
     )
 }
 
-const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
-    return (
-        <Box
-            as="a"
-            href={href}
-            role={'group'}
-            display={'block'}
-            p={2}
-            rounded={'md'}
-            _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
-            <Stack direction={'row'} align={'center'}>
-                <Box>
-                    <Text
-                        transition={'all .3s ease'}
-                        _groupHover={{ color: 'var(--main-color)' }}
-                        fontWeight={500}>
-                        {label}
-                    </Text>
-                    <Text fontSize={'sm'}>{subLabel}</Text>
-                </Box>
-                <Flex
-                    transition={'all .3s ease'}
-                    transform={'translateX(-10px)'}
-                    opacity={0}
-                    _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
-                    justify={'flex-end'}
-                    align={'center'}
-                    flex={1}>
-                    <Icon color={'var(--main-color)'} w={5} h={5} as={ChevronRightIcon} />
-                </Flex>
-            </Stack>
-        </Box>
-    )
-}
+// const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+//     return (
+//         <Box
+//             as="a"
+//             href={href}
+//             role={'group'}
+//             display={'block'}
+//             p={2}
+//             rounded={'md'}
+//             _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+//             <Stack direction={'row'} align={'center'}>
+//                 <Box>
+//                     <Text
+//                         transition={'all .3s ease'}
+//                         _groupHover={{ color: 'var(--main-color)' }}
+//                         fontWeight={500}>
+//                         {label}
+//                     </Text>
+//                     <Text fontSize={'sm'}>{subLabel}</Text>
+//                 </Box>
+//                 <Flex
+//                     transition={'all .3s ease'}
+//                     transform={'translateX(-10px)'}
+//                     opacity={0}
+//                     _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
+//                     justify={'flex-end'}
+//                     align={'center'}
+//                     flex={1}>
+//                     <Icon color={'var(--main-color)'} w={5} h={5} as={ChevronRightIcon} />
+//                 </Flex>
+//             </Stack>
+//         </Box>
+//     )
+// }
 
 const MobileNav = () => {
     return (

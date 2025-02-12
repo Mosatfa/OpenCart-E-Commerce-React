@@ -1,7 +1,10 @@
 export interface ICategory {
+    id:number;
     name: string;
     slug: string;
-    url: string
+    createdAt:string;
+    updatedAt:string;
+    subcategories:ISubcategory[]
 }
 
 export interface ISubcategory {
@@ -24,7 +27,7 @@ export interface IProduct {
     rating?: number,
     reviews?: [],
     stock?: number
-    qty?:number
+    qty:number
 }
 
 

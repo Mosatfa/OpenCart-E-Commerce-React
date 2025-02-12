@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import useCustomQuery from '../hooks/useCustomQuery'
 import { IProduct } from '../interfaces'
 import {
@@ -23,8 +23,8 @@ import { addItemToCard } from '../app/feature/cart/cartSlice'
 const Product = () => {
     const { id } = useParams()
     const dispatch = useAppDispatch()
-    const navigate = useNavigate()
-    const goBack = () => navigate(-1)
+    // const navigate = useNavigate()
+    // const goBack = () => navigate(-1)
     const [originalTitle, setOriginalTitle] = useState(document.title);
     const { isLoading, data } = useCustomQuery<IProduct>({
         queryKey: ["products", `${id}`],
@@ -52,8 +52,8 @@ const Product = () => {
 
     const addToCardHandler = () => {
         if (data) {
-            const { id, title, price, images, description } = data
-            dispatch(addItemToCard({ id, title, price, images, description }))
+            const { id, title, price, images, description, qty } = data
+            dispatch(addItemToCard({ id, title, price, images, description, qty }))
         }
     }
 

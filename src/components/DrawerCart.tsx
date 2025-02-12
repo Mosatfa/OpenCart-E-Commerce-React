@@ -6,13 +6,9 @@ import {
   DrawerHeader,
   DrawerBody,
   DrawerFooter,
-  Input,
   Button,
-  Box,
   Stack,
   Card,
-  Flex,
-  VStack,
 } from '@chakra-ui/react';
 import { RefObject } from 'react';
 import CartDrawerItem from './CartDrawerItem';

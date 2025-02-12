@@ -8,12 +8,12 @@ interface IProps {
     product: IProduct
 }
 const ProductCard = ({ product }: IProps) => {
-    const { id, title, price, images, discountPercentage, description } = product
+    const { id, title, price, images, discountPercentage, description, qty } = product
     const dispatch = useAppDispatch()
     const { finalPrice, amountSaved } = calculateDiscount(price, discountPercentage || 0)
 
     const addToCardHandler = () => {
-        dispatch(addItemToCard({ id, title, price, images, description }))
+        dispatch(addItemToCard({ id, title, price, images, description, qty }))
     }
 
     return (

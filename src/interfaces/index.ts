@@ -15,15 +15,16 @@ export interface ISubcategory {
 export interface IProduct {
     id: number;
     title: string;
-    slug: string
+    slug?: string
     description: string,
-    brand: string,
+    brand?: string,
     price: number;
-    discountPercentage: number;
+    discountPercentage?: number;
     images: string[];
-    rating: number,
-    reviews: [],
-    stock: number
+    rating?: number,
+    reviews?: [],
+    stock?: number
+    qty?:number
 }
 
 

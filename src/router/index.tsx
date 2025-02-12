@@ -1,4 +1,4 @@
-import { Route, createBrowserRouter, createRoutesFromElements, useLocation } from "react-router-dom";
+import { Route, createBrowserRouter, createRoutesFromElements} from "react-router-dom";
 import ProtectedRoute from "../components/auth/ProtectedRoute";
 import PageNotFound from "../pages/PageNotFound";
 import RootLayout from "../layouts/Layout";
@@ -9,6 +9,8 @@ import Product from "../pages/Product";
 import LoginPage from "../pages/Login";
 import RegisterPage from "../pages/Register";
 import CookieService from "../service/CookieService";
+import DashBoardLayout from "../layouts/DashBoardLayout";
+import DashBoardProductsTable from "../pages/Dashboard/DashBoardProductsTable";
 
 const acc_token = CookieService.getCookie('jwt')
 
@@ -31,9 +33,9 @@ const router = createBrowserRouter(
         />
       </Route>
 
-      <Route element={<AuthLayout />} errorElement={<ErrorHandler />}>
+      <Route path="/" element={<AuthLayout />} errorElement={<ErrorHandler />}>
         <Route
-          path="/auth/login"
+          path="/login"
           element={
             <ProtectedRoute isAllowed={!acc_token} redirectPath="/" data={acc_token}>
               <LoginPage />
@@ -41,7 +43,7 @@ const router = createBrowserRouter(
           }
         />
         <Route
-          path="/auth/register"
+          path="/register"
           element={
             <ProtectedRoute isAllowed={!acc_token} redirectPath="/" data={acc_token}>
               <RegisterPage />
@@ -49,6 +51,11 @@ const router = createBrowserRouter(
           }
         />
       </Route>
+
+      <Route path="/dashboard" element={<DashBoardLayout />} errorElement={<ErrorHandler />}>
+          <Route path="products" element={<DashBoardProductsTable/>}/>
+      </Route>
+
 
       {/* Page Not Found */}
       <Route path="*" element={<PageNotFound />} />

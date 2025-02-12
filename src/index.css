@@ -4,3 +4,25 @@
     --border-hover: #008ECC;
     --main-color: #19BFEF;
 }
+
+.drawer-Body::-webkit-scrollbar {
+    width: 0px;
+    /* Width of the scrollbar */
+}
+
+.drawer-Body::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    /* Color of the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 2px;
+
+    /* Color of the thumb */
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    /* Width of the scrollbar */
+}

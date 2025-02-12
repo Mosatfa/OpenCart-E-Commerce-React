@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
-import HeadingForm from '../components/ui/Heading'
+import HeadingForm from '../components/Heading'
 import { Link } from "react-router-dom";
 
 

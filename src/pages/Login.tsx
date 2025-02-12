@@ -17,7 +17,7 @@ import {
     useToast,
 } from '@chakra-ui/react'
 import { Link as RouterLink } from "react-router-dom";
-import HeadingForm from '../components/ui/Heading';
+import HeadingForm from '../components/Heading';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { IUserLogin } from '../interfaces';

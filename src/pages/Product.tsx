@@ -17,9 +17,12 @@ import Rating from '../components/ui/Rating'
 import { calculateDiscount } from '../utils/calculateDiscount'
 import SelectedQuantityProducts from '../components/ui/SelectedQuantityProducts'
 import SkeletonProduct from '../components/ui/SkeletonProduct'
+import { useAppDispatch } from '../app/store'
+import { addItemToCard } from '../app/feature/cart/cartSlice'
 
 const Product = () => {
     const { id } = useParams()
+    const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const goBack = () => navigate(-1)
     const [originalTitle, setOriginalTitle] = useState(document.title);
@@ -45,7 +48,15 @@ const Product = () => {
             document.title = originalTitle;
         };
     }, [data]);
-    
+
+
+    const addToCardHandler = () => {
+        if (data) {
+            const { id, title, price, images, description } = data
+            dispatch(addItemToCard({ id, title, price, images, description }))
+        }
+    }
+
     return (
         <Container maxW={'6xl'} py={12}>
             {
@@ -70,7 +81,7 @@ const Product = () => {
                             <Box display={'flex'} alignItems={'center'}>
                                 <Text me={1}>{data?.rating}</Text>
                                 <Rating rating={data?.rating} />
-                                <Text ms={2} textDecoration={'underline'}>{data?.reviews.length} reviews</Text>
+                                <Text ms={2} textDecoration={'underline'}>{data?.reviews?.length} reviews</Text>
                             </Box>
                             <Box display={"flex"} alignItems={"center"}>
                                 <Text fontSize={'xl'} fontWeight={500}>{finalPrice}$</Text>
@@ -96,6 +107,7 @@ const Product = () => {
                                     _hover={{ opacity: "0.8" }}
                                     mt={2}
                                     textTransform={'capitalize'}
+                                    onClick={addToCardHandler}
                                 >Add to cart</Button>
                             </Stack>
                         </Stack>

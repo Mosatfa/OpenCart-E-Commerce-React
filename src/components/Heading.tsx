@@ -1,5 +1,5 @@
 import { Image, Stack, Heading, LinkBox } from "@chakra-ui/react"
-import logo from '../../../public/pngwing.com.png'
+import logo from '../../public/pngwing.com.png'
 import { Link } from "react-router-dom"
 
 interface IProps {

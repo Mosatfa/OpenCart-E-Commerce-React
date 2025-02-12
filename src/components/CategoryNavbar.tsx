@@ -5,8 +5,6 @@ import {
     HStack,
     useColorModeValue,
 } from '@chakra-ui/react'
-import DropMenu from './ui/DropMenu';
-import { categories } from '../data/categories';
 import useCustomQuery from '../hooks/useCustomQuery';
 import { ICategory } from '../interfaces';
 
@@ -15,7 +13,7 @@ interface IPrpos {
 }
 
 const CategoryNavbar = ({ display }: IPrpos) => {
-    const { isLoading, data } = useCustomQuery<ICategory[]>({
+    const { data } = useCustomQuery<ICategory[]>({
         queryKey: ["categories"],
         url: `/products/categories`,
     })

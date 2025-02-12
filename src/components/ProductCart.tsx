@@ -2,16 +2,24 @@ import { Box, Button, Card, CardBody, CardFooter, CardHeader, Image, Stack, Text
 import { IProduct } from "../interfaces";
 import { calculateDiscount } from "../utils/calculateDiscount";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../app/store";
+import { addItemToCard } from "../app/feature/cart/cartSlice";
 interface IProps {
     product: IProduct
 }
-const ProductCard = ({ product: { id: productId, title, price, images, discountPercentage } }: IProps) => {
-    const { finalPrice, amountSaved } = calculateDiscount(price, discountPercentage)
+const ProductCard = ({ product }: IProps) => {
+    const { id, title, price, images, discountPercentage, description } = product
+    const dispatch = useAppDispatch()
+    const { finalPrice, amountSaved } = calculateDiscount(price, discountPercentage || 0)
+
+    const addToCardHandler = () => {
+        dispatch(addItemToCard({ id, title, price, images, description }))
+    }
 
     return (
         <Card
             as={Link}
-            to={`/products/${productId}`}
+            to={`/products/${id}`}
             display="flex"
             flexDirection={{ lg: "column", sm: "row" }}
             width={{ lg: "100%", sm: "auto" }}
@@ -58,6 +66,7 @@ const ProductCard = ({ product: { id: productId, title, price, images, discountP
                         onClick={(e) => {
                             e.preventDefault()
                             e.stopPropagation()
+                            addToCardHandler()
                         }}
                     >Add to cart</Button>
                 </CardFooter>

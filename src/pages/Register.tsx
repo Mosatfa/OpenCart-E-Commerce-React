@@ -25,10 +25,10 @@ const RegisterPage = () => {
     return (
         <Flex
             minH={'100vh'}
-            align={'none'}
+            align={{base:'center' , lg:'start'}}
             justify={'center'}
             bg={useColorModeValue('gray.50', 'gray.800')}>
-            <Stack spacing={8} mx={'auto'} maxW={'lg'} py={0} px={6}>
+            <Stack spacing={8} mx={'auto'} minW={{ base: 'md', lg: "lg" }} py={0} px={6}>
                 <HeadingForm title='Create an account' />
                 <Box
                     rounded={'lg'}

@@ -1,4 +1,4 @@
-import { Route, createBrowserRouter, createRoutesFromElements} from "react-router-dom";
+import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import ProtectedRoute from "../components/auth/ProtectedRoute";
 import PageNotFound from "../pages/PageNotFound";
 import RootLayout from "../layouts/Layout";
@@ -33,27 +33,28 @@ const router = createBrowserRouter(
         />
       </Route>
 
-      <Route path="/" element={<AuthLayout />} errorElement={<ErrorHandler />}>
-        <Route
-          path="/login"
-          element={
-            <ProtectedRoute isAllowed={!acc_token} redirectPath="/" data={acc_token}>
-              <LoginPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <ProtectedRoute isAllowed={!acc_token} redirectPath="/" data={acc_token}>
-              <RegisterPage />
-            </ProtectedRoute>
-          }
-        />
-      </Route>
+
+      <Route
+        path="/login"
+        element={
+          <ProtectedRoute isAllowed={!acc_token} redirectPath="/" data={acc_token}>
+            <LoginPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          <ProtectedRoute isAllowed={!acc_token} redirectPath="/" data={acc_token}>
+            <RegisterPage />
+          </ProtectedRoute>
+        }
+      />
+
+
 
       <Route path="/dashboard" element={<DashBoardLayout />} errorElement={<ErrorHandler />}>
-          <Route path="products" element={<DashBoardProductsTable/>}/>
+        <Route path="products" element={<DashBoardProductsTable />} />
       </Route>
 
 

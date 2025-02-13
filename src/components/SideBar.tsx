@@ -12,6 +12,7 @@ import Range from "./ui/Range";
 import { useState } from "react";
 import useCustomQuery from "../hooks/useCustomQuery";
 import { ICategory } from "../interfaces";
+import CategorySideBar from "./ui/CategorySideBar";
 
 
 interface IPrpos {
@@ -49,13 +50,10 @@ const Sidebar = ({ display }: IPrpos) => {
                     </Text>
                     <Stack spacing={1} flex={1} mt={1}>
                         {
-                            data?.length ?
-                                data.map(({ name }, index) => (
-                                    <Checkbox key={index} size={'sm'}>
-                                        <Text fontSize={'xs'} fontWeight={500}>{name}</Text>
-                                    </Checkbox>
-                                ))
-                                : null
+                            data &&
+                            data.map((item, index) => (
+                                <CategorySideBar key={index} label={item.name} subcategories={data} />
+                            ))
                         }
                     </Stack>
                 </Flex>
@@ -64,7 +62,7 @@ const Sidebar = ({ display }: IPrpos) => {
                     <Text fontSize="sm" fontWeight="bold">
                         Brands
                     </Text>
-                    <Stack spacing={0} flex={1}>
+                    <Stack spacing={0} flex={1} pt={1}>
                         <Link href="#" _hover={{ textDecoration: "none" }}>
                             <Checkbox size={'sm'}>
                                 <Text fontSize={'xs'} fontWeight={500}>OpenCart</Text>
@@ -77,7 +75,7 @@ const Sidebar = ({ display }: IPrpos) => {
                     <Text fontSize="sm" fontWeight="bold">
                         Price
                     </Text>
-                    <Stack spacing={0} flex={1}>
+                    <Stack spacing={0} flex={1} pt={1}>
                         <Text fontSize={'xs'} fontWeight={700} mb={'0'}>{`${currentRange[0]} - ${currentRange[1]} & above`}</Text>
                         <Flex>
                             <Range onChange={handleRangeChange} />

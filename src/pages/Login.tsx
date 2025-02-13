@@ -45,7 +45,7 @@ const LoginPage = () => {
         try {
             const response = await loginUser({ email: data.email, password: data.password }).unwrap();
             const dateTime = new Date();
-            dateTime.setTime(dateTime.getTime() + 1000 * 60 * 60 * 24 * 3)            
+            dateTime.setTime(dateTime.getTime() + 1000 * 60 * 60 * 24 * 3)
             CookieService.setCookie('jwt', response.results?.access_token, {
                 expires: dateTime
             });
@@ -75,15 +75,14 @@ const LoginPage = () => {
             minH={'100vh'}
             align={'none'}
             justify={'center'}
-            bg={useColorModeValue('gray.50', 'gray.800')} >
-            <Stack spacing={8} mx={'auto'} maxW={'xl'} py={0} px={6}>
+            bg={useColorModeValue('gray.50', 'gray.800')}>
+            <Stack spacing={8} mx={'auto'} minW={{base:'md' , lg:"lg"}} py={0} px={6}>
                 <HeadingForm title='Sign in' />
                 <Box
                     as={'form'}
                     rounded={'lg'}
                     bg={useColorModeValue('white', 'gray.700')}
                     boxShadow={'lg'}
-                    w={'md'}
                     p={8}
                     onSubmit={handleSubmit(onSubmit)}
                 >
@@ -125,7 +124,7 @@ const LoginPage = () => {
                             </Button>
                             <Stack pt={6}>
                                 <Text align={'center'}>
-                                    Not a memmber? <LinkBox as={RouterLink} to={'/auth/register'} color={'blue.400'}>SignUp now</LinkBox>
+                                    Not a memmber? <LinkBox as={RouterLink} to={'/register'} color={'blue.400'}>SignUp now</LinkBox>
                                 </Text>
                             </Stack>
                         </Stack>
@@ -137,3 +136,4 @@ const LoginPage = () => {
 }
 
 export default LoginPage
+

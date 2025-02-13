@@ -78,7 +78,7 @@ const RegisterPage = () => {
                         </Stack>
                         <Stack pt={6}>
                             <Text align={'center'}>
-                                Already a user? <LinkBox as={Link} to={'/auth/login'} color={'blue.400'}>Login</LinkBox>
+                                Already a user? <LinkBox as={Link} to={'/login'} color={'blue.400'}>Login</LinkBox>
                             </Text>
                         </Stack>
                     </Stack>

@@ -8,21 +8,22 @@ interface IProps {
     label: string,
 }
 
-const MobileNavItem = ({ label, subcategories}: IProps) => {
+const CategorySideBar = ({ label, subcategories }: IProps) => {
     const { isOpen, onToggle } = useDisclosure()
 
     return (
-        <Stack spacing={0} >
-            <Box onClick={subcategories && onToggle}
-                py={2}
+        <Stack spacing={0}>
+            <Box
+                onClick={subcategories && onToggle}
+                py={1}
                 as="a"
+                cursor={'pointer'}
                 display={'flex'}
                 alignItems="center"
-                cursor={'pointer'}
                 _hover={{
                     textDecoration: 'none',
                 }}>
-                <Text fontSize={'sm'} fontWeight={'500'} >
+                <Text fontSize={'xs'} fontWeight={500} >
                     {label}
                 </Text>
                 {subcategories && (
@@ -31,8 +32,8 @@ const MobileNavItem = ({ label, subcategories}: IProps) => {
                         transition={'all .25s ease-in-out'}
                         transform={isOpen ? 'rotate(180deg)' : ''}
                         ms={1}
-                        w={5}
-                        h={5}
+                        w={4}
+                        h={4}
                     />
                 )}
             </Box>
@@ -47,7 +48,13 @@ const MobileNavItem = ({ label, subcategories}: IProps) => {
                     align={'start'}>
                     {subcategories &&
                         subcategories.map((child) => (
-                            <Box as="a" href="#" key={child.name} py={2} fontSize={'xs'} fontWeight={'500'}>
+                            <Box
+                                as="a"
+                                cursor={'pointer'}
+                                key={child.name}
+                                py={0}
+                                fontSize={'xs'}
+                                fontWeight={'400'}>
                                 {child.name}
                             </Box>
                         ))}
@@ -57,4 +64,4 @@ const MobileNavItem = ({ label, subcategories}: IProps) => {
     )
 }
 
-export default MobileNavItem
+export default CategorySideBar

@@ -103,7 +103,7 @@ const Navbar = () => {
                                 <Text ms={'4px'}>Sign In/Sign Up</Text>
                             </Button>
                         }
-                        {!acc_token && <Center height='20px'>
+                        {!acc_token && <Center height='20px' display={{ base: 'none', md: 'inline-flex' }} >
                             <Divider orientation='vertical' />
                         </Center>
                         }

@@ -26,3 +26,15 @@
     width: 10px;
     /* Width of the scrollbar */
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+}

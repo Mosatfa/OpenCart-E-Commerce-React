@@ -8,7 +8,7 @@ import ProductsPage from "../pages/Products";
 import Product from "../pages/Product";
 import LoginPage from "../pages/Login";
 import RegisterPage from "../pages/Register";
-import CookieService from "../service/CookieService";
+// import CookieService from "../service/CookieService";
 import DashBoardLayout from "../layouts/DashBoardLayout";
 import DashBoardProductsTable from "../pages/Dashboard/DashBoardProductsTable";
 

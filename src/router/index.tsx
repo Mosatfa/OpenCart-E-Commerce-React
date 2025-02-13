@@ -8,11 +8,11 @@ import ProductsPage from "../pages/Products";
 import Product from "../pages/Product";
 import LoginPage from "../pages/Login";
 import RegisterPage from "../pages/Register";
-// import CookieService from "../service/CookieService";
+import CookieService from "../service/CookieService";
 import DashBoardLayout from "../layouts/DashBoardLayout";
 import DashBoardProductsTable from "../pages/Dashboard/DashBoardProductsTable";
 
-// const acc_token = CookieService.getCookie('jwt')
+const acc_token = CookieService.getCookie('jwt')
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,7 +36,7 @@ const router = createBrowserRouter(
       <Route
         path="/login"
         element={
-          <ProtectedRoute redirectPath="/" >
+          <ProtectedRoute isAllowed={!acc_token} redirectPath="/" data={acc_token}>
             <LoginPage />
           </ProtectedRoute>
         }
@@ -44,12 +44,11 @@ const router = createBrowserRouter(
       <Route
         path="/register"
         element={
-          <ProtectedRoute redirectPath="/" >
+          <ProtectedRoute isAllowed={!acc_token} redirectPath="/" data={acc_token}>
             <RegisterPage />
           </ProtectedRoute>
         }
       />
-
 
 
       <Route path="/dashboard" element={<DashBoardLayout />} errorElement={<ErrorHandler />}>

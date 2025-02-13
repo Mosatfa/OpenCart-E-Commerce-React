@@ -2,7 +2,6 @@ import { Route, createBrowserRouter, createRoutesFromElements } from "react-rout
 import ProtectedRoute from "../components/auth/ProtectedRoute";
 import PageNotFound from "../pages/PageNotFound";
 import RootLayout from "../layouts/Layout";
-// import AuthLayout from "../layouts/AuthLayout";
 import ErrorHandler from "../components/errors/ErrorHandler";
 import ProductsPage from "../pages/Products";
 import Product from "../pages/Product";

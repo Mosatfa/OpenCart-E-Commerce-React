@@ -12,7 +12,7 @@ import CookieService from "../service/CookieService";
 import DashBoardLayout from "../layouts/DashBoardLayout";
 import DashBoardProductsTable from "../pages/Dashboard/DashBoardProductsTable";
 
-const acc_token = CookieService.getCookie('jwt')
+// const acc_token = CookieService.getCookie('jwt')
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,11 +33,10 @@ const router = createBrowserRouter(
         />
       </Route>
 
-
       <Route
         path="/login"
         element={
-          <ProtectedRoute isAllowed={!acc_token} redirectPath="/" data={acc_token}>
+          <ProtectedRoute redirectPath="/" >
             <LoginPage />
           </ProtectedRoute>
         }
@@ -45,7 +44,7 @@ const router = createBrowserRouter(
       <Route
         path="/register"
         element={
-          <ProtectedRoute isAllowed={!acc_token} redirectPath="/" data={acc_token}>
+          <ProtectedRoute redirectPath="/" >
             <RegisterPage />
           </ProtectedRoute>
         }

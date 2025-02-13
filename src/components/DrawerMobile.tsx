@@ -29,7 +29,7 @@ const DrawerMobile = ({ isOpen, onClose, finalFocusRef }: IProps) => {
                 <DrawerOverlay />
                 <DrawerContent>
                     <DrawerCloseButton />
-                    <DrawerHeader>
+                    <DrawerHeader pb={0}>
                         <Image
                             src={logo}
                             alt="Logo"
@@ -46,11 +46,16 @@ const DrawerMobile = ({ isOpen, onClose, finalFocusRef }: IProps) => {
                                 borderBottom={1}
                                 borderStyle={'solid'}
                                 borderColor={'#d5dbdb'}>
-                                <MobileNavItem name="Categories" data={data} />
+                                <Text fontWeight={'bold'}>Categories</Text>
+                                {data &&
+                                    data.map((item) => (
+                                        <MobileNavItem key={item.name} label={item.name} children={data} />
+                                    ))
+                                }
                             </Box>
                             <Box>
                                 <Text fontWeight={'bold'}>Help & Settings</Text>
-                                <Stack spacing={2} mt={2} fontSize={'sm'}>
+                                <Stack spacing={3} mt={2} fontSize={'sm'} fontWeight={'500'}>
                                     <Box as="a">
                                         Your Account
                                     </Box>

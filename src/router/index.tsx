@@ -10,7 +10,6 @@ import RegisterPage from "../pages/Register";
 import CookieService from "../service/CookieService";
 import DashBoardLayout from "../layouts/DashBoardLayout";
 import DashBoardProductsTable from "../pages/Dashboard/DashBoardProductsTable";
-import AuthLayout from "../layouts/AuthLayout";
 
 const acc_token = CookieService.getCookie('jwt')
 
@@ -50,10 +49,6 @@ const router = createBrowserRouter(
         }
       />
       
-      <Route path="/dashboard" element={<AuthLayout />} errorElement={<ErrorHandler />}>
-        <Route path="products" element={<DashBoardProductsTable />} />
-      </Route>
-
 
       <Route path="/dashboard" element={<DashBoardLayout />} errorElement={<ErrorHandler />}>
         <Route path="products" element={<DashBoardProductsTable />} />

@@ -18,6 +18,7 @@ export interface ISubcategory {
 export interface IProduct {
     id: number;
     title: string;
+    category?:string
     slug?: string
     description: string,
     brand?: string,

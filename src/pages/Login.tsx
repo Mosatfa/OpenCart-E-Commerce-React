@@ -75,6 +75,7 @@ const LoginPage = () => {
             minH={'100vh'}
             align={{base:'center' , lg:'start'}}
             justify={'center'}
+            overflowX={'hidden'}
             bg={useColorModeValue('gray.50', 'gray.800')}>
             <Stack spacing={8} mx={'auto'} minW={{base:'md' , lg:"lg"}} py={0} px={6}>
                 <HeadingForm title='Sign in' />
@@ -82,7 +83,6 @@ const LoginPage = () => {
                     as={'form'}
                     rounded={'lg'}
                     bg={useColorModeValue('white', 'gray.700')}
-                    boxShadow={'lg'}
                     p={8}
                     onSubmit={handleSubmit(onSubmit)}
                 >

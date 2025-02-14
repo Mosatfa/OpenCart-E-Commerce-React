@@ -16,5 +16,5 @@ export const loginApi = createApi({
   }),
 });
 
-
+// providerTags , invalidtags => caching
 export const { useLoginUserMutation } = loginApi;

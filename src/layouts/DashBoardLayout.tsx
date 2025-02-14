@@ -21,6 +21,7 @@ import {
     MenuList,
     Image,
     Link,
+    Stack,
 } from '@chakra-ui/react'
 import {
     FiMenu,
@@ -34,6 +35,7 @@ import { LuUsersRound } from "react-icons/lu";
 import { IconType } from 'react-icons'
 import { Link as LinkDom, Outlet } from 'react-router-dom'
 import logo from '../../public/pngwing.com.png'
+import Footer from '../components/Footer';
 
 
 interface LinkItemProps {
@@ -204,29 +206,34 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 const DashBoardLayout = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    
+
 
     return (
-        <Box minH="100vh" bg={'#fff'}>
-            <SidebarContent onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
-            <Drawer
-                isOpen={isOpen}
-                placement="left"
-                onClose={onClose}
-                returnFocusOnClose={false}
-                onOverlayClick={onClose}
-                size="full">
-                <DrawerContent>
-                    <SidebarContent onClose={onClose} />
-                </DrawerContent>
-            </Drawer>
-            {/* mobilenav */}
-            <MobileNav onOpen={onOpen} />
-            <Box ml={{ base: 0, md: 60 }} p="4">
-                {/* Content */}
-                <Outlet />
+        <>
+            <Box minH="100vh" bg={'#F7FAFC'}>
+                <SidebarContent onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
+                <Drawer
+                    isOpen={isOpen}
+                    placement="left"
+                    onClose={onClose}
+                    returnFocusOnClose={false}
+                    onOverlayClick={onClose}
+                    size="full">
+                    <DrawerContent>
+                        <SidebarContent onClose={onClose} />
+                    </DrawerContent>
+                </Drawer>
+                {/* mobilenav */}
+                <MobileNav onOpen={onOpen} />
+                <Stack spacing={2} ml={{ base: 0, md: 60 }} p="4">
+                    {/* Content */}
+                    <Outlet />
+                    <Footer />
+                </Stack>
             </Box>
-        </Box>
+        </>
+
+
     )
 }
 

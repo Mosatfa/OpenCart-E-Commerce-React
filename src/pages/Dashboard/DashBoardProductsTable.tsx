@@ -1,48 +1,56 @@
-import { Table, TableCaption, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from '@chakra-ui/react'
+import { Button, Table,  TableContainer, Tbody, Td,  Th, Thead, Tr } from '@chakra-ui/react'
+import useCustomQuery from '../../hooks/useCustomQuery'
+import { IProduct } from '../../interfaces'
+import { Link } from 'react-router-dom'
 
 interface IProps {
 
 }
 
 const DashBoardProductsTable = ({ }: IProps) => {
+    const {  data } = useCustomQuery<{ products: IProduct[] }>({
+        queryKey: ["products",],
+        url: `/products`,
+    })
+
     return (
-        <TableContainer>
-            <Table size={'lg'}>
-                <TableCaption>Imperial to metric conversion factors</TableCaption>
+        <TableContainer bg={'#fff'} rounded={'md'} shadow={'sm'} p={0}>
+            <Table>
                 <Thead>
                     <Tr>
-                        <Th>To convert</Th>
-                        <Th>into</Th>
-                        <Th isNumeric>multiply by</Th>
+                        <Th>Title</Th>
+                        <Th>Category</Th>
+                        <Th>Price</Th>
+                        <Th>Brand</Th>
+                        <Th>Action</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
-                    <Tr>
-                        <Td>inches</Td>
-                        <Td>millimetres (mm)</Td>
-                        <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>feet</Td>
-                        <Td>centimetres (cm)</Td>
-                        <Td isNumeric>30.48</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>yards</Td>
-                        <Td>metres (m)</Td>
-                        <Td isNumeric>0.91444</Td>
-                    </Tr>
+                    {data?.products?.length &&
+                        data?.products.map((product) => (
+                            <Tr key={product.id}>
+                                <Td>{product.title}</Td>
+                                <Td>{product.category}</Td>
+                                <Td>{product.price}</Td>
+                                <Td>{product.brand}</Td>
+                                <Td display={'flex'} justifyContent={'space-between'}>
+                                    <Button as={Link} to={`/products/${product.id}`} flex={1} color="black" variant={'link'} size={'xs'}>
+                                        view
+                                    </Button>
+                                    <Button flex={1} color="blue.500" variant={'ghost'} size={'xs'}>
+                                        Edit
+                                    </Button>
+                                    <Button  flex={1} color="red.500" variant={'ghost'} size={'xs'} ms={1}>
+                                        Delete
+                                    </Button>
+                                </Td>
+                            </Tr>
+                        ))}
                 </Tbody>
-                <Tfoot>
-                    <Tr>
-                        <Th>To convert</Th>
-                        <Th>into</Th>
-                        <Th isNumeric>multiply by</Th>
-                    </Tr>
-                </Tfoot>
             </Table>
         </TableContainer>
     )
 }
 
 export default DashBoardProductsTable
+

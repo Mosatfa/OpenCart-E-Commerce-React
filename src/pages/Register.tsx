@@ -27,13 +27,13 @@ const RegisterPage = () => {
             minH={'100vh'}
             align={{base:'center' , lg:'start'}}
             justify={'center'}
+            overflowX={'hidden'}
             bg={useColorModeValue('gray.50', 'gray.800')}>
             <Stack spacing={8} mx={'auto'} minW={{ base: 'md', lg: "lg" }} py={0} px={6}>
                 <HeadingForm title='Create an account' />
                 <Box
                     rounded={'lg'}
                     bg={useColorModeValue('white', 'gray.700')}
-                    boxShadow={'lg'}
                     p={8}>
                     <Stack spacing={4}>
                         <HStack>
